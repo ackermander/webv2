@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2017 10:19:21 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="ce.acmd.things.clazz.Account" table="ACCOUNT" lazy="false">
+        <id name="accountId" type="java.lang.Integer">
+            <column name="ACCOUNTID" />
+            <generator class="native" />
+        </id>
+        <property name="nikename" type="java.lang.String">
+            <column name="NIKENAME" />
+        </property>
+        <property name="authorityLev" type="java.lang.Integer">
+            <column name="AUTHORITYLEV" />
+        </property>
+        <property name="regDate" type="java.sql.Date">
+            <column name="REGDATE" />
+        </property>
+        <property name="lastLive" type="java.sql.Date">
+            <column name="LASTLIVE" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <set name="comments" table="COMMENT" inverse="true" lazy="false">
+            <key>
+                <column name="COMMENTER" />
+            </key>
+            <one-to-many class="ce.acmd.things.clazz.Comment" />
+        </set>
+        <set name="essays" table="ESSAY" inverse="true" lazy="false">
+            <key>
+                <column name="ACCOUNTID" />
+            </key>
+            <one-to-many class="ce.acmd.things.clazz.Essay" />
+        </set>
+    </class>
+</hibernate-mapping>

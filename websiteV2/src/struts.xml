@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+
+    <package name="default" namespace="/" extends="struts-default">
+
+        <default-action-ref name="index" />
+<!-- 
+        <global-results>
+            <result name="error">/WEB-INF/error.html</result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings>
+ -->
+ 		<action name="essay-submit" method="essaySub" class="ce.acmd.ajax.event.EssaySubmiter">
+ 			<result name="essay_up_success">/ok.txt</result>
+ 			<result name="user_not_found">/failed.txt</result>
+ 		</action>
+ 		<action name="comment-submit" method="submit" class="ce.acmd.ajax.event.CommentSubmiter">
+ 			<result name="comment_success">/ok.txt</result>
+ 		</action>
+ 		<action name="check" method="check" class="ce.acmd.ajax.event.CheckName">
+ 			<result name="check_hav">/ok.txt</result>
+ 			<result name="check_no">/noname.txt</result>
+ 		</action>
+        <action name="login" method="login" class="ce.acmd.event.clazz.login.Login">
+        	<result name="login_success" type="redirect">/index.jsp</result>
+        </action>
+        <action name="login-validate" method="loginValidate" class="ce.acmd.event.clazz.login.Login">
+			<result name="login_validate_success" type="chain">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>    
+			<result name="login_validate_error" type="redirect">/Register/register.jsp</result>    
+        </action>
+        
+		<action name="addAccount" method="addAccount" class="ce.acmd.event.clazz.registe.UserValidator">
+			<result name="an_account_insert_success" type="chain">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="v" method="validateUser" class="ce.acmd.event.clazz.registe.UserValidator">
+			<result name="no_account_in_database" type="chain">
+				<param name="actionName">addAccount</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="an_account_in_database" type="redirect">/Register/register.jsp</result>
+		</action>
+		<action name="registe" method="registe" class="ce.acmd.event.clazz.registe.Register">
+			<result name="success" type="chain">
+				<param name="actionName">v</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+    </package>
+
+    <include file="example.xml"/>
+
+    <!-- Add packages here -->
+
+</struts>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="../jquery-1.12.3.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var start = new Date().getTime();
+		setInterval(function() {
+
+				end = new Date().getTime() - start;
+	if(end > 3000)
+			window.location.href="../index.jsp";
+		}, 1000)
+	})
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+<p>可能发生了什么错误,即将返回到主页面.</p>
+<div></div>
+</body>
+</html>

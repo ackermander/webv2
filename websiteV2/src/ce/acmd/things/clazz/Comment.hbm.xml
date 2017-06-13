@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2017 10:19:21 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="ce.acmd.things.clazz.Comment" table="COMMENT" lazy="false">
+        <id name="cId" type="java.lang.Integer" access="field">
+            <column name="CID" />
+            <generator class="native" />
+        </id>
+        <property name="author" type="java.lang.String">
+            <column name="AUTHOR" />
+        </property>
+        <property name="date" type="java.sql.Date">
+            <column name="DATE" />
+        </property>
+        <property name="commentContent" type="java.lang.String">
+            <column name="COMMENTCONTENT" />
+        </property>
+        <many-to-one name="targetEssay" class="ce.acmd.things.clazz.Essay" fetch="join">
+            <column name="TARGETESSAY" />
+        </many-to-one>
+        <many-to-one name="commenter" class="ce.acmd.things.clazz.Account" fetch="join">
+            <column name="COMMENTER" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
