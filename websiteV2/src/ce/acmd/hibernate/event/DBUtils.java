@@ -34,8 +34,6 @@ public class DBUtils {
 		sessionFactory = new MetadataSources(serviceRegistry).buildMetadata().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
-		Essay essay = (Essay) obj;
-		System.out.println(essay.getContent());
 		session.save(obj);
 		
 		transaction.commit();

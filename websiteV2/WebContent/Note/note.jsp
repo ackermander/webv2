@@ -489,6 +489,7 @@ $(function(){
 					"<hr>"+
 				"</div>")
 				} else {
+					alert(msg);
 					alert("shibai");
 				}
 			}
